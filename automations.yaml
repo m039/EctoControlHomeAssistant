@@ -1,0 +1,76 @@
+- id: '1732228580515'
+  alias: Установка температуры ночью
+  description: ''
+  triggers:
+  - trigger: time_pattern
+    hours: '23'
+  conditions: []
+  actions:
+  - action: climate.set_temperature
+    metadata: {}
+    data:
+      temperature: 47
+    target:
+      entity_id: climate.ebus_boiler
+  - action: input_number.set_value
+    metadata: {}
+    data:
+      value: 100
+    target:
+      entity_id: input_number.heater_modulation
+  - action: climate.set_temperature
+    metadata: {}
+    data:
+      temperature: 47
+    target:
+      entity_id: climate.ebus_boiler_emergency
+  mode: single
+- id: '1732229197403'
+  alias: Установка температуры днем
+  description: ''
+  triggers:
+  - trigger: time_pattern
+    hours: '7'
+  conditions: []
+  actions:
+  - action: climate.set_temperature
+    metadata: {}
+    data:
+      temperature: 20
+    target:
+      entity_id: climate.ebus_boiler
+  - action: input_number.set_value
+    metadata: {}
+    data:
+      value: 15
+    target:
+      entity_id: input_number.heater_modulation
+  - action: climate.set_temperature
+    metadata: {}
+    data:
+      temperature: 20
+    target:
+      entity_id: climate.ebus_boiler_emergency
+  mode: single
+- id: '1732913286613'
+  alias: Установка значений E-BUS адаптера при перезагрузке
+  description: ''
+  triggers:
+  - trigger: numeric_state
+    entity_id:
+    - sensor.ebus_uptime
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 30
+    below: 600
+  conditions: []
+  actions:
+  - action: climate.set_temperature
+    metadata: {}
+    data:
+      temperature: '{{ states(''input_number.heater_last_temperature'') | int(default=0)
+        }}'
+    target:
+      entity_id: climate.ebus_boiler
+  mode: single

@@ -1,0 +1,494 @@
+modbus:
+  - name: waveshare
+    type: tcp
+    host: 192.168.2.131
+    port: 8899
+    sensors:
+      - name: ebus_r_00
+        slave: 0x0e
+        address: 0x00
+        data_type: custom
+        count: 4
+        structure: ">4h"
+        scan_interval: 25
+        unique_id: 701f367c-8ee2-4947-8b2b-ddb632104112
+        
+      - name: ebus_r_10
+        slave: 0x0e
+        address: 0x10
+        data_type: int16
+        scan_interval: 25
+        unique_id: 9f28ff48-32b9-4b0a-862e-8d16676f74e3
+        
+      - name: ebus_r_11
+        slave: 0x0e
+        address: 0x11
+        data_type: int16
+        scan_interval: 25
+        unique_id: a81b4183-b65f-4f69-9091-95a125567d99
+        
+      - name: ebus_r_1d
+        slave: 0x0e
+        address: 0x1d
+        data_type: uint16
+        scan_interval: 25
+        unique_id: 0fb64f3f-1e81-4b14-9f37-c45393384288
+        
+      - name: ebus_r_30
+        slave: 0x0e
+        address: 0x30
+        data_type: uint16
+        scan_interval: 25
+        unique_id: 10a39f19-15da-43f2-a78e-292f4517a0d1
+        
+      - name: ebus_r_38
+        slave: 0x0e
+        address: 0x38
+        data_type: uint16
+        scan_interval: 25
+        unit_of_measurement: "%"
+        unique_id: 42e72a60-52f0-4d28-b72a-83564022fbe6
+        
+      - name: ebus_r_39
+        slave: 0x0e
+        address: 0x39
+        data_type: uint16
+        scan_interval: 25
+        unique_id: eab4a42a-324a-49aa-96a6-52b2889493fb
+        
+      - name: ebus_uptime
+        slave: 0x0e
+        address: 0x12
+        data_type: uint32
+        device_class: duration
+        unit_of_measurement: s
+        scan_interval: 25
+        unique_id: c13dec8a-02c8-43ab-8567-6f94ffbeab15
+        
+      - name: ebus_heater_lower_bound
+        slave: 0x0e
+        address: 0x14
+        data_type: uint16
+        scan_interval: 25
+        min_value: 0
+        max_value: 100
+        device_class: temperature
+        unit_of_measurement: °C
+        unique_id: 5c799b97-0870-4d9a-8d45-0e903697c702
+        
+      - name: ebus_heater_upper_bound
+        slave: 0x0e
+        address: 0x15
+        data_type: uint16
+        scan_interval: 25
+        min_value: 0
+        max_value: 100
+        device_class: temperature
+        unit_of_measurement: °C
+        unique_id: 020dbca3-ec58-4c00-85fe-5449d3481fbd
+        
+      - name: ebus_heater_current_temperature
+        slave: 0x0e
+        address: 0x18
+        data_type: int16
+        scan_interval: 25
+        device_class: temperature
+        unit_of_measurement: °C
+        scale: 0.1
+        unique_id: 7bcad1d6-0a54-41f5-a678-fc4dc1fa092e
+        
+      - name: ebus_heater_pressure
+        slave: 0x0e
+        address: 0x1a
+        data_type: uint16
+        scan_interval: 25
+        device_class: atmospheric_pressure
+        unit_of_measurement: bar
+        scale: 0.1
+        precision: 1
+        unique_id: 886267bf-cbbe-43b0-87a2-bf4cfceb0dde
+        
+      - name: ebus_heater_current_modulation
+        slave: 0x0e
+        address: 0x1c
+        data_type: uint16
+        scan_interval: 25
+        unit_of_measurement: "%"
+        unique_id: 3c28150b-8afb-470f-8b0a-6c4cbfe62839
+        
+      - name: ebus_boiler_error_code_main
+        slave: 0x0e
+        address: 0x1e
+        data_type: uint16
+        scan_interval: 25
+        unique_id: 1340710f-e57c-4c56-8ca1-fe7b3198c0cd
+        
+      - name: ebus_boiler_error_code_secondary
+        slave: 0x0e
+        address: 0x1f
+        data_type: uint16
+        scan_interval: 25
+        unique_id: 2c2f8cd5-2f58-48a8-8f13-fbd37424aac9
+        
+      - name: ebus_boiler_external_temperature
+        slave: 0x0e
+        address: 0x20
+        data_type: int16
+        device_class: temperature
+        unit_of_measurement: °C
+        scan_interval: 25
+        unique_id: b42c3615-91a9-4627-befe-3a58d5712fde
+        
+      - name: ebus_boiler_vendor_code
+        slave: 0x0e
+        address: 0x21
+        data_type: uint16
+        scan_interval: 25
+        unique_id: 4ea2a3aa-3576-4811-84b5-75c59ed0af9e
+        
+      - name: ebus_boiler_model_code
+        slave: 0x0e
+        address: 0x22
+        data_type: uint16
+        scan_interval: 25
+        unique_id: f8d61763-dbc7-4e02-b4f6-4709f89f843d
+        
+    climates:
+      - name: ebus_boiler
+        unique_id: abdc88db-4167-4b74-b4d4-4f65f56fa841
+        slave: 0x0e
+        address: 0x18
+        input_type: holding
+        data_type: int16
+        max_temp: 100
+        min_temp: 0
+        offset: 0
+        precision: 1
+        scale: 0.1
+        target_temp_register: 0x31
+        target_temp_write_registers: true
+        write_registers: true
+        temp_step: 1
+        scan_interval: 25
+        temperature_unit: C
+        
+      - name: ebus_boiler_emergency
+        unique_id: 8f33bd07-7e27-442a-a714-0723d575393f
+        slave: 0x0e
+        address: 0x18
+        input_type: holding
+        data_type: int16
+        max_temp: 100
+        min_temp: 0
+        offset: 0
+        precision: 1
+        scale: 0.1
+        target_temp_register: 0x32
+        target_temp_write_registers: true
+        write_registers: true
+        temp_step: 1
+        scan_interval: 25
+        temperature_unit: C
+
+input_button:
+    ebus_reboot_adapter:
+        name: E-BUS Перезагрузить адаптер
+        
+    ebus_reset_boiler_error_code:
+        name: E-BUS Сбросить коды ошибок котла
+
+input_number:
+    heater_modulation:
+        name: E-BUS Модуляция котла
+        min: 0
+        max: 100
+        step: 1
+        unit_of_measurement: "%"
+    heater_lower_bound:
+        name: E-BUS Нижний предел теплоносителя
+        min: 0
+        max: 100
+        step: 1
+        unit_of_measurement: °C
+    heater_upper_bound:
+        name: E-BUS Верхний предел теплоносителя
+        min: 0
+        max: 100
+        step: 1
+        unit_of_measurement: °C
+    heater_last_temperature:
+        name: E-BUS Последние значение температуры
+        min: 0
+        max: 100
+        step: 1
+        unit_of_measurement: °C
+
+input_select:
+  ebus_type_external_connection:
+    name: E-BUS Тип внешних подключений
+    options:
+      - adapter-connected-to-boiler
+      - boiler-connected-to-external-device
+    initial: adapter-connected-to-boiler
+
+switch:
+  - platform: template
+    switches:
+        ebus_heater_contour:
+            unique_id: e212365b-20dd-4125-b9f1-5f7590cc062a
+            value_template: "{{ states('sensor.ebus_r_39') | int(default=0) | bitwise_and(1) > 0 }}"
+            turn_on:
+              - service: modbus.write_register
+                data:
+                    hub: waveshare
+                    slave: 0x0e
+                    address: 0x39
+                    value: >
+                        {% set reg = states.sensor.ebus_r_39.state | int(default=0) %}
+                        {% set bit = 1 %}
+                        {{ [ reg | bitwise_or(2 ** (bit - 1)) ] }}
+              - service: homeassistant.update_entity
+                data:
+                    entity_id: sensor.ebus_r_39
+            turn_off:
+              - service: modbus.write_register
+                data:
+                    hub: waveshare
+                    slave: 0x0e
+                    address: 0x39
+                    value: >
+                        {% set reg = states.sensor.ebus_r_39.state | int(default=0) %}
+                        {% set bit = 1 %}
+                        {{ [ reg | bitwise_and(0xFFFF - (2 ** (bit - 1))) ] }}
+              - service: homeassistant.update_entity
+                data:
+                    entity_id: sensor.ebus_r_39
+
+template:
+  - binary_sensor:
+      - name: ebus_connection_status
+        unique_id: cc6bf1fc-f23e-4d33-86f0-cb8c0eb223db
+        device_class: connectivity
+        state: >-
+            {% set v1 = states('sensor.ebus_r_10') %}
+            {% set v1 = int(float(v1)) %}
+            {{ v1 | bitwise_and(0x800) == 0x800 }}
+        
+      - name: ebus_gas_enabled
+        unique_id: b81adc24-c58f-4d8b-baa9-adace6d638eb
+        state: >-
+            {% set v1 = states('sensor.ebus_r_1d') %}
+            {% set v1 = int(float(v1)) %}
+            {{ v1 | bitwise_and(0x01) == 0x01 }}
+        
+      - name: ebus_heater_enabled
+        unique_id: 2781e0a4-81b9-456e-9b3e-e9ebd6204826
+        state: >-
+            {% set v1 = states('sensor.ebus_r_1d') %}
+            {% set v1 = int(float(v1)) %}
+            {{ v1 | bitwise_and(0x02) == 0x02 }}
+
+  - sensor:
+      - name: ebus_id
+        unique_id: e489e395-df0b-4916-a45e-67aceb2820ee
+        state: >-
+            {% if states('sensor.ebus_r_00') in ['unavailable', 'unknown'] %}
+              {{ states('sensor.ebus_r_00') }}
+            {% else %}
+            {% set v1 = states('sensor.ebus_r_00').split(',')[0] %}
+            {% set v2 = states('sensor.ebus_r_00').split(',')[1] %}
+            {% set v1 = int(float(v1)) %}
+            {% set v2 = int(float(v2)) %}
+            {% set v1 = ((v1 | bitwise_and(0xFF)) * (2 ** 16)) %}
+            {% set v2 = (v2 | bitwise_and(0xFFFF)) %}
+            {{ '0x%06X' % (v1 | bitwise_or(v2)) }}
+            {% endif %}
+            
+      - name: ebus_type
+        unique_id: bf8c5293-fef5-46e2-9ee9-49ed1b6e4d8a
+        state: >-
+            {% if states('sensor.ebus_r_00') in ['unavailable', 'unknown'] %}
+              {{ states('sensor.ebus_r_00') }}
+            {% else %}
+            {% set v1 = states('sensor.ebus_r_00').split(',')[2] %}
+            {% set v1 = int(float(v1)) %}
+            {% set v1 = (v1 | bitwise_and(0xFF)) %}
+            {{ '0x%02X' % v1 }}
+            {% endif %}
+            
+      - name: ebus_adapter_restart_code
+        unique_id: 39037bd0-5824-46cf-b8a1-2918771870f2m
+        state: >-
+            {% set v1 = states('sensor.ebus_r_10') %}
+            {% set v1 = int(float(v1)) %}
+            {{ v1 | bitwise_and(0xff) }}
+            
+      - name: ebus_adapter_hard_version
+        unique_id: 51b91a97-4b20-4150-aff1-b15d5e9aecff
+        state: >-
+            {% set v1 = states('sensor.ebus_r_11') %}
+            {% set v1 = int(float(v1)) %}
+            {{ (v1 | bitwise_and(0xFF00) / (2 ** 8)) | int | bitwise_and(0xff) }}
+            
+      - name: ebus_adapter_soft_version
+        unique_id: bb0b0dd6-1773-45d8-8f0a-59e9f0426722
+        state: >-
+            {% set v1 = states('sensor.ebus_r_11') %}
+            {% set v1 = int(float(v1)) %}
+            {{ v1 | bitwise_and(0xff) }}
+
+automation:
+  - id: ebus_reboot_adapter
+    alias: ebus_reboot_adapter
+    triggers:
+      - trigger: state
+        entity_id: input_button.ebus_reboot_adapter
+    action:
+      - service: modbus.write_register
+        data_template:
+            hub: waveshare
+            slave: 0x0e
+            address: 0x80
+            value: [ 0x02 ]
+
+  - id: ebus_reset_boiler_error_code
+    alias: ebus_reset_boiler_error_code
+    triggers:
+      - trigger: state
+        entity_id: input_button.ebus_reset_boiler_error_code
+    action:
+      - service: modbus.write_register
+        data_template:
+            hub: waveshare
+            slave: 0x0e
+            address: 0x80
+            value: [ 0x03 ]
+
+  - id: slider_set_heater_modulation
+    alias: slider_set_heater_modulation
+    trigger:
+        platform: state
+        entity_id: input_number.heater_modulation
+    actions:
+      - action: modbus.write_register
+        data_template:
+            hub: waveshare
+            slave: 0x0e
+            address: 0x38
+            value: '{{[ states.input_number.heater_modulation.state | int ]}}'
+  - id: slider_get_heater_modulation
+    alias: slider_get_heater_modulation
+    trigger:
+        platform: time_pattern
+        seconds: /50
+    conditions: "{{ (now() - states.input_number.heater_modulation.last_changed).total_seconds() > 120 }}"
+    action:
+      - service: input_number.set_value
+        data_template:
+            entity_id: input_number.heater_modulation
+            value: '{{ states.sensor.ebus_r_38.state | int }}'
+
+  - id: slider_set_heater_lower_bound
+    alias: slider_set_heater_lower_bound
+    trigger:
+        platform: state
+        entity_id: input_number.heater_lower_bound
+    action:
+      - service: modbus.write_register
+        data_template:
+            hub: waveshare
+            slave: 0x0e
+            address: 0x33
+            value: '{{[ states.input_number.heater_lower_bound.state | int ]}}'
+  - id: slider_get_heater_lower_bound
+    alias: slider_get_heater_lower_bound
+    trigger:
+        platform: time_pattern
+        seconds: /50
+    action:
+      - service: input_number.set_value
+        data_template:
+            entity_id: input_number.heater_lower_bound
+            value: '{{ states.sensor.ebus_heater_lower_bound.state | int }}'
+
+  - id: slider_set_heater_upper_bound
+    alias: slider_set_heater_upper_bound
+    trigger:
+        platform: state
+        entity_id: input_number.heater_upper_bound
+    action:
+      - service: modbus.write_register
+        data_template:
+            hub: waveshare
+            slave: 0x0e
+            address: 0x34
+            value: '{{[ states.input_number.heater_upper_bound.state | int ]}}'
+  - id: slider_get_heater_upper_bound
+    alias: slider_get_heater_upper_bound
+    trigger:
+        platform: time_pattern
+        seconds: /50
+    action:
+      - service: input_number.set_value
+        data_template:
+            entity_id: input_number.heater_upper_bound
+            value: '{{ states.sensor.ebus_heater_upper_bound.state | int }}'
+
+  - id: ebus_get_type_external_connection
+    alias: ebus_get_type_external_connection
+    trigger:
+        platform: time_pattern
+        seconds: /50
+    actions:
+      - action: input_select.select_option
+        target:
+          entity_id: input_select.ebus_type_external_connection
+        data:
+          option: >-
+            {% set v1 = states.sensor.ebus_r_30.state | int %}
+            {% if v1 == 0 %}
+                adapter-connected-to-boiler
+            {% elif v1 == 1 %}
+                boiler-connected-to-external-device
+            {% endif %}
+  - id: ebus_set_type_external_connection
+    alias: ebus_set_type_external_connection
+    triggers:
+      - trigger: state
+        entity_id: input_select.ebus_type_external_connection
+    actions:
+      - action: modbus.write_register
+        data_template:
+            hub: waveshare
+            slave: 0x0e
+            address: 0x30
+            value: >-
+                {% set v1 = states('input_select.ebus_type_external_connection') %}
+                {% if v1 == "adapter-connected-to-boiler" %}
+                    {{[ 0 ]}}
+                {% elif v1 == "boiler-connected-to-external-device" %}
+                    {{[ 1 ]}}
+                {% endif %}
+    
+  - id: '1732912965489'
+    alias: Сохранение последнего значения температуры котла
+    description: ''
+    triggers:
+    -   trigger: state
+        entity_id:
+          - climate.ebus_boiler
+        attribute: temperature
+    actions:
+      - action: input_number.set_value
+        metadata: {}
+        data:
+            value: >
+                {% set t = state_attr('climate.ebus_boiler', 'temperature') %}
+                {% if t in ['unavailable', 'unknown'] or t <= 0 %}
+                  {{ states('input_number.heater_last_temperature') | int(default=0) }}
+                {% else %}
+                  {{ t | int(default=0) }}
+                {% endif %}
+        target:
+            entity_id: input_number.heater_last_temperature
+    mode: single
