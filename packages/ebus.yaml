@@ -3,73 +3,76 @@ modbus:
     type: tcp
     host: 192.168.2.131
     port: 8899
+    #delay: 1
+    #message_wait_milliseconds: 200
+    #timeout: 5
     sensors:
       - name: ebus_r_00
-        slave: 0x0e
+        slave: 0
         address: 0x00
         data_type: custom
         count: 4
         structure: ">4h"
-        scan_interval: 25
+        scan_interval: 50
         unique_id: 701f367c-8ee2-4947-8b2b-ddb632104112
         
       - name: ebus_r_10
-        slave: 0x0e
+        slave: 0
         address: 0x10
         data_type: int16
-        scan_interval: 25
+        scan_interval: 50
         unique_id: 9f28ff48-32b9-4b0a-862e-8d16676f74e3
         
       - name: ebus_r_11
-        slave: 0x0e
+        slave: 0
         address: 0x11
         data_type: int16
-        scan_interval: 25
+        scan_interval: 50
         unique_id: a81b4183-b65f-4f69-9091-95a125567d99
         
       - name: ebus_r_1d
-        slave: 0x0e
+        slave: 0
         address: 0x1d
         data_type: uint16
-        scan_interval: 25
+        scan_interval: 51
         unique_id: 0fb64f3f-1e81-4b14-9f37-c45393384288
         
       - name: ebus_r_30
-        slave: 0x0e
+        slave: 0
         address: 0x30
         data_type: uint16
-        scan_interval: 25
+        scan_interval: 51
         unique_id: 10a39f19-15da-43f2-a78e-292f4517a0d1
         
       - name: ebus_r_38
-        slave: 0x0e
+        slave: 0
         address: 0x38
         data_type: uint16
-        scan_interval: 25
+        scan_interval: 51
         unit_of_measurement: "%"
         unique_id: 42e72a60-52f0-4d28-b72a-83564022fbe6
         
       - name: ebus_r_39
-        slave: 0x0e
+        slave: 0
         address: 0x39
         data_type: uint16
-        scan_interval: 25
+        scan_interval: 52
         unique_id: eab4a42a-324a-49aa-96a6-52b2889493fb
         
       - name: ebus_uptime
-        slave: 0x0e
+        slave: 0
         address: 0x12
         data_type: uint32
         device_class: duration
         unit_of_measurement: s
-        scan_interval: 25
+        scan_interval: 52
         unique_id: c13dec8a-02c8-43ab-8567-6f94ffbeab15
         
       - name: ebus_heater_lower_bound
-        slave: 0x0e
+        slave: 0
         address: 0x14
         data_type: uint16
-        scan_interval: 25
+        scan_interval: 52
         min_value: 0
         max_value: 100
         device_class: temperature
@@ -77,10 +80,10 @@ modbus:
         unique_id: 5c799b97-0870-4d9a-8d45-0e903697c702
         
       - name: ebus_heater_upper_bound
-        slave: 0x0e
+        slave: 0
         address: 0x15
         data_type: uint16
-        scan_interval: 25
+        scan_interval: 53
         min_value: 0
         max_value: 100
         device_class: temperature
@@ -88,20 +91,20 @@ modbus:
         unique_id: 020dbca3-ec58-4c00-85fe-5449d3481fbd
         
       - name: ebus_heater_current_temperature
-        slave: 0x0e
+        slave: 0
         address: 0x18
         data_type: int16
-        scan_interval: 25
+        scan_interval: 53
         device_class: temperature
         unit_of_measurement: °C
         scale: 0.1
         unique_id: 7bcad1d6-0a54-41f5-a678-fc4dc1fa092e
         
       - name: ebus_heater_pressure
-        slave: 0x0e
+        slave: 0
         address: 0x1a
         data_type: uint16
-        scan_interval: 25
+        scan_interval: 53
         device_class: atmospheric_pressure
         unit_of_measurement: bar
         scale: 0.1
@@ -109,54 +112,54 @@ modbus:
         unique_id: 886267bf-cbbe-43b0-87a2-bf4cfceb0dde
         
       - name: ebus_heater_current_modulation
-        slave: 0x0e
+        slave: 0
         address: 0x1c
         data_type: uint16
-        scan_interval: 25
+        scan_interval: 54
         unit_of_measurement: "%"
         unique_id: 3c28150b-8afb-470f-8b0a-6c4cbfe62839
         
       - name: ebus_boiler_error_code_main
-        slave: 0x0e
+        slave: 0
         address: 0x1e
         data_type: uint16
-        scan_interval: 25
+        scan_interval: 54
         unique_id: 1340710f-e57c-4c56-8ca1-fe7b3198c0cd
         
       - name: ebus_boiler_error_code_secondary
-        slave: 0x0e
+        slave: 0
         address: 0x1f
         data_type: uint16
-        scan_interval: 25
+        scan_interval: 54
         unique_id: 2c2f8cd5-2f58-48a8-8f13-fbd37424aac9
         
       - name: ebus_boiler_external_temperature
-        slave: 0x0e
+        slave: 0
         address: 0x20
         data_type: int16
         device_class: temperature
         unit_of_measurement: °C
-        scan_interval: 25
+        scan_interval: 55
         unique_id: b42c3615-91a9-4627-befe-3a58d5712fde
         
       - name: ebus_boiler_vendor_code
-        slave: 0x0e
+        slave: 0
         address: 0x21
         data_type: uint16
-        scan_interval: 25
+        scan_interval: 55
         unique_id: 4ea2a3aa-3576-4811-84b5-75c59ed0af9e
         
       - name: ebus_boiler_model_code
-        slave: 0x0e
+        slave: 0
         address: 0x22
         data_type: uint16
-        scan_interval: 25
+        scan_interval: 55
         unique_id: f8d61763-dbc7-4e02-b4f6-4709f89f843d
         
     climates:
       - name: ebus_boiler
         unique_id: abdc88db-4167-4b74-b4d4-4f65f56fa841
-        slave: 0x0e
+        slave: 0
         address: 0x18
         input_type: holding
         data_type: int16
@@ -169,12 +172,12 @@ modbus:
         target_temp_write_registers: true
         write_registers: true
         temp_step: 1
-        scan_interval: 25
+        scan_interval: 100
         temperature_unit: C
         
       - name: ebus_boiler_emergency
         unique_id: 8f33bd07-7e27-442a-a714-0723d575393f
-        slave: 0x0e
+        slave: 0
         address: 0x18
         input_type: holding
         data_type: int16
@@ -187,7 +190,7 @@ modbus:
         target_temp_write_registers: true
         write_registers: true
         temp_step: 1
-        scan_interval: 25
+        scan_interval: 120
         temperature_unit: C
 
 input_button:
@@ -241,7 +244,7 @@ switch:
               - service: modbus.write_register
                 data:
                     hub: waveshare
-                    slave: 0x0e
+                    slave: 0
                     address: 0x39
                     value: >
                         {% set reg = states.sensor.ebus_r_39.state | int(default=0) %}
@@ -254,7 +257,7 @@ switch:
               - service: modbus.write_register
                 data:
                     hub: waveshare
-                    slave: 0x0e
+                    slave: 0
                     address: 0x39
                     value: >
                         {% set reg = states.sensor.ebus_r_39.state | int(default=0) %}
@@ -347,7 +350,7 @@ automation:
       - service: modbus.write_register
         data_template:
             hub: waveshare
-            slave: 0x0e
+            slave: 0
             address: 0x80
             value: [ 0x02 ]
 
@@ -360,7 +363,7 @@ automation:
       - service: modbus.write_register
         data_template:
             hub: waveshare
-            slave: 0x0e
+            slave: 0
             address: 0x80
             value: [ 0x03 ]
 
@@ -373,14 +376,14 @@ automation:
       - action: modbus.write_register
         data_template:
             hub: waveshare
-            slave: 0x0e
+            slave: 0
             address: 0x38
             value: '{{[ states.input_number.heater_modulation.state | int ]}}'
   - id: slider_get_heater_modulation
     alias: slider_get_heater_modulation
     trigger:
         platform: time_pattern
-        seconds: /50
+        seconds: /59
     conditions: "{{ (now() - states.input_number.heater_modulation.last_changed).total_seconds() > 120 }}"
     action:
       - service: input_number.set_value
@@ -397,14 +400,14 @@ automation:
       - service: modbus.write_register
         data_template:
             hub: waveshare
-            slave: 0x0e
+            slave: 0
             address: 0x33
             value: '{{[ states.input_number.heater_lower_bound.state | int ]}}'
   - id: slider_get_heater_lower_bound
     alias: slider_get_heater_lower_bound
     trigger:
         platform: time_pattern
-        seconds: /50
+        seconds: /59
     action:
       - service: input_number.set_value
         data_template:
@@ -420,14 +423,14 @@ automation:
       - service: modbus.write_register
         data_template:
             hub: waveshare
-            slave: 0x0e
+            slave: 0
             address: 0x34
             value: '{{[ states.input_number.heater_upper_bound.state | int ]}}'
   - id: slider_get_heater_upper_bound
     alias: slider_get_heater_upper_bound
     trigger:
         platform: time_pattern
-        seconds: /50
+        seconds: /59
     action:
       - service: input_number.set_value
         data_template:
@@ -438,7 +441,7 @@ automation:
     alias: ebus_get_type_external_connection
     trigger:
         platform: time_pattern
-        seconds: /50
+        seconds: /59
     actions:
       - action: input_select.select_option
         target:
@@ -460,7 +463,7 @@ automation:
       - action: modbus.write_register
         data_template:
             hub: waveshare
-            slave: 0x0e
+            slave: 0
             address: 0x30
             value: >-
                 {% set v1 = states('input_select.ebus_type_external_connection') %}
