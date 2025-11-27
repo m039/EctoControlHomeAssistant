@@ -15,16 +15,16 @@ class EctoControlClient:
 
     def read_value(self, address, count):
         if count == 1:
-            pdu = self._client.read_holding_registers(address=address, count=1, slave=self._device_id)
+            pdu = self._client.read_holding_registers(address=address, count=1, device_id=self._device_id)
             return pdu.registers[0]
         elif count == 2:
-            pdu = self._client.read_holding_registers(address=address, count=2, slave=self._device_id)
+            pdu = self._client.read_holding_registers(address=address, count=2, device_id=self._device_id)
             return int.from_bytes(struct.pack(">HH", pdu.registers[0] & 0xFFFF, pdu.registers[1] & 0xFFFF), byteorder="big")
         else:
             raise Exception("Not supported")
         
     def write_value(self, address, value):
-        self._client.write_registers(address=address, values=[value], slave=self._device_id)
+        self._client.write_registers(address=address, values=[value], device_id=self._device_id)
 
 client = EctoControlClient()
 
