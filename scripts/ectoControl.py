@@ -20,6 +20,9 @@ class EctoControlClient:
         elif count == 2:
             pdu = self._client.read_holding_registers(address=address, count=2, device_id=self._device_id)
             return int.from_bytes(struct.pack(">HH", pdu.registers[0] & 0xFFFF, pdu.registers[1] & 0xFFFF), byteorder="big")
+        elif count == 3:
+            pdu = self._client.read_holding_registers(address=address, count=3, device_id=self._device_id)
+            return int.from_bytes(struct.pack(">HHH", pdu.registers[0] & 0xFFFF, pdu.registers[1] & 0xFFFF, pdu.registers[2] & 0xFFFF), byteorder="big")
         else:
             raise Exception("Not supported")
         
@@ -109,6 +112,18 @@ class ResetControlParameter:
     def __str__(self):
         pass
 
+class InfoControlParameter:
+    def read(self):
+        self._state = client.read_value(address=0x03, count=1)
+        pass
+    def execute(self):
+        pass
+    def __str__(self):
+        addr = (self._state & 0xFF)
+        type = ((self._state >> 8) & 0xFF)
+        chn_cnt = ((self._state >> 16) & 0xFF)
+        return f"Информация: {hex(addr)} (addr), {hex(type)} (type), {hex(chn_cnt)} (chn_cnt)"
+
 def read_and_print_parameters(*parameters):
     for x in parameters:
         x.read()
@@ -141,6 +156,7 @@ def main():
         temperatureEmergencyControl = TemperatureEmergencyControlParameter()
         modulation = ModulationControlParameter()
         stateControl = StateControlParameter()
+        info = InfoControlParameter()
 
         read_and_print_parameters(
             curentTemperature, 
@@ -150,7 +166,8 @@ def main():
             temperatureControl,
             temperatureEmergencyControl,
             modulation,
-            stateControl
+            stateControl,
+            info
         )
     elif (args.set_temperature or args.set_temperature == 0):
         temperature1 = TemperatureControlParameter()
