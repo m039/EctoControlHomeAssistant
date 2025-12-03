@@ -114,14 +114,14 @@ class ResetControlParameter:
 
 class InfoControlParameter:
     def read(self):
-        self._state = client.read_value(address=0x03, count=1)
+        self._state = client.read_value(address=0x02, count=2)
         pass
     def execute(self):
         pass
     def __str__(self):
-        addr = (self._state & 0xFF)
+        chn_cnt = (self._state & 0xFF)
         type = ((self._state >> 8) & 0xFF)
-        chn_cnt = ((self._state >> 16) & 0xFF)
+        addr = ((self._state >> 16) & 0xFF)
         return f"Информация: {hex(addr)} (addr), {hex(type)} (type), {hex(chn_cnt)} (chn_cnt)"
     
 class ConnectionControlParameter:
@@ -131,6 +131,16 @@ class ConnectionControlParameter:
         pass
     def __str__(self):
         return "Подключение адаптера к котлу: " + str(self._state)
+    
+class VersionControlParameter:
+    def read(self):
+        self._version = client.read_value(address=0x11, count=1)
+    def write(self, value):
+        pass
+    def __str__(self):
+        hard = (self._version & 0xFF)
+        soft = ((self._version >> 8) & 0xFF)
+        return F"Версия котла: {hard} (hard), {soft} (soft)"
 
 def read_and_print_parameters(*parameters):
     for x in parameters:
@@ -166,6 +176,7 @@ def main():
         stateControl = StateControlParameter()
         info = InfoControlParameter()
         connection = ConnectionControlParameter()
+        version = VersionControlParameter()
 
         read_and_print_parameters(
             curentTemperature, 
@@ -177,7 +188,8 @@ def main():
             modulation,
             stateControl,
             info,
-            connection
+            connection,
+            version
         )
     elif (args.set_temperature or args.set_temperature == 0):
         temperature1 = TemperatureControlParameter()
