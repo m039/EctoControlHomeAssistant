@@ -140,7 +140,7 @@ class VersionControlParameter:
     def __str__(self):
         soft = (self._version & 0xFF)
         hard = ((self._version >> 8) & 0xFF)
-        return F"Версия котла: {hard} (hard), {soft} (soft)"
+        return F"Версия адаптера: {hard} (hard), {soft} (soft)"
 
 def read_and_print_parameters(*parameters):
     for x in parameters:
