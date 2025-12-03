@@ -123,6 +123,14 @@ class InfoControlParameter:
         type = ((self._state >> 8) & 0xFF)
         chn_cnt = ((self._state >> 16) & 0xFF)
         return f"Информация: {hex(addr)} (addr), {hex(type)} (type), {hex(chn_cnt)} (chn_cnt)"
+    
+class ConnectionControlParameter:
+    def read(self):
+        self._state = client.read_value(address=0x30, count=1)
+    def write(self, value):
+        pass
+    def __str__(self):
+        return "Подключение адаптера к котлу: " + str(self._state)
 
 def read_and_print_parameters(*parameters):
     for x in parameters:
@@ -157,6 +165,7 @@ def main():
         modulation = ModulationControlParameter()
         stateControl = StateControlParameter()
         info = InfoControlParameter()
+        connection = ConnectionControlParameter()
 
         read_and_print_parameters(
             curentTemperature, 
@@ -167,7 +176,8 @@ def main():
             temperatureEmergencyControl,
             modulation,
             stateControl,
-            info
+            info,
+            connection
         )
     elif (args.set_temperature or args.set_temperature == 0):
         temperature1 = TemperatureControlParameter()
